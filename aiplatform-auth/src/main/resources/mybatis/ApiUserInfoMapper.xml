@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.smart.aiplatformauth.mapper.ApiUserInfoMapper">
+
+  <!--获取授权用户信息（该sql仅限程序内部使用可获取密码信息）-->
+  <select id="findUserInfo" resultType="com.smart.aiplatformauth.model.User">
+    SELECT userid,username,password,realname,tel,sex,age,idcard,department,organizationcode,jurisdiction,state,openid,formid,createtime
+    FROM user
+    WHERE state=1
+    <if test="null != user.username and '' != user.username">
+      and  username = #{user.username}
+    </if>
+  </select>
+
+  <!--根据用户名查询用户和所属角色信息（因安全需求字段删掉了usr.password）-->
+  <select id="findUserRoleInfoByUP" resultType="com.smart.aiplatformauth.vo.UserRoleVo">
+    SELECT usr.userid,usr.username,usr.realname,usr.tel,usr.sex,usr.age,usr.idcard,usr.department,usr.organizationcode,usr.jurisdiction,usr.state,usr.openid,usr.formid,usr.createtime,
+           ur.id,ur.userid,ur.roleid,
+           r.roleid,r.rolename,r.chinesename,r.describe,r.managerange,r.permissionrange,r.menupermission,r.layerpermission,r.servicepermission,r.classification,r.superior,r.recordtime
+    FROM user AS usr
+    LEFT JOIN userrole AS ur ON usr.userid = ur.userid
+		INNER JOIN role AS r ON ur.roleid = r.roleid
+    WHERE state=1
+    <if test="null != user.username and '' != user.username">
+      and  usr.username = #{user.username}
+    </if>
+    <if test="null != user.userid">
+      and  usr.userid = #{user.userid}
+    </if>
+  </select>
+
+  <!--根据角色id查询属于该角色的所有用户信息（因安全需求字段删掉了usr.password）-->
+  <select id="findUserRoleInfoByRoleid" resultType="com.smart.aiplatformauth.vo.UserRoleVo">
+    SELECT usr.userid,usr.username,usr.realname,usr.tel,usr.sex,usr.age,usr.idcard,usr.department,usr.organizationcode,usr.jurisdiction,usr.state,usr.openid,usr.formid,usr.createtime,
+           ur.id,ur.userid,ur.roleid,
+           r.roleid,r.rolename,r.chinesename,r.describe,r.managerange,r.permissionrange,r.menupermission,r.layerpermission,r.servicepermission,r.classification,r.superior,r.recordtime
+    FROM user AS usr
+    LEFT JOIN userrole AS ur ON usr.userid = ur.userid
+		INNER JOIN role AS r ON ur.roleid = r.roleid
+    WHERE r.roleid = #{roleid}
+  </select>
+
+</mapper>

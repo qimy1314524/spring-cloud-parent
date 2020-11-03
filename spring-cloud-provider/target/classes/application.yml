@@ -1,0 +1,35 @@
+
+server:
+  port: 1001
+  servlet:
+    context-path: /atguigu-provider
+eureka:
+  instance:
+    instance-id: provider1001
+  client:
+    service-url:
+      defaultZone: http://eurekaserver5000.com:5000/eureka/,http://eurekaserver5001.com:5001/eureka
+    fetch-registry: true
+    register-with-eureka: true
+spring:
+  application:
+    name: atguigu-provider #指定微服务的名称,以便将来通过微服务名称调用微服务
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+        #采样率值介于0到1之间,1则表示全部采集
+    probability: 1
+#仪表盘监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+aliyun:
+  oss:
+    endPoint: oss-cn-qingdao.aliyuncs.com
+    bucketName: atguigu20200814
+    accessKeyId: LTAI4GKtmzwQZE6tw2CEPX7y
+    accessKeySecret: TqXc55WjibLSBqYC0kB2nW8x2qMW5b
+    bucketDomain: atguigu20200814.oss-cn-qingdao.aliyuncs.com

@@ -1,0 +1,18 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: zuul-geteway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
+zuul:
+  routes:
+    consumer:
+      service-id: atguigu-consumer
+      path: /consumer/**
+    provider:
+      service-id: atguigu-provider
+      path: /provider/**
+  ignored-services: '*'

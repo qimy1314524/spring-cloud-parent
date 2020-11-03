@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.atuguigu.spring.cloud</groupId>
+  <artifactId>spring-cloud-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <modules>
+    <module>spring-cloud-common</module>
+    <module>aiplatform-auth</module>
+    <module>spring-cloud-provider</module>
+    <module>spring-cloud-consumer</module>
+    <module>spring-cloud-eureka</module>
+    <module>spring-cloud-dashboard</module>
+    <module>spring-cloud-zuul</module>
+    <module>com-atguigu-shortMessage</module>
+    <module>com-atguigu-springsession</module>
+    <module>com-atguigu-springsession02</module>
+    <module>spring-cloud-eureka6000</module>
+    <module>spring-cloud-getway9527</module>
+    <module>spring-cloud-configserver</module>
+    <module>spring-cloud-config-client3355</module>
+    <module>spring-cloud-config-client3366</module>
+    <module>comatguiguspringstreamrabbitmqprovider8001</module>
+    <module>comatuguispringcloudstreamrabbitmqconsumer8802</module>
+    <module>spring-cloud-stream-mqqp-consumer8803</module>
+    <module>spring-cloud-alibaba-payment9002</module>
+    <module>spring-cloud-alibaba-consumer9101</module>
+    <module>spring.cloud.alibaba.config9201</module>
+    <module>spring-cloud-alibaba-sentinel9401</module>
+  </modules>
+  <name>spring-cloud-parent</name>
+  <description>Demo project for Spring Boot</description>
+
+  <dependencyManagement>
+    <dependencies>
+      <!--导入springCloud需要使用的依赖信息-->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Greenwich.SR2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!--导入springboot需要使用的依赖信息-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>

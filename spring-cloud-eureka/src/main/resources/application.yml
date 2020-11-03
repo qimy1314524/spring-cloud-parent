@@ -1,0 +1,16 @@
+server:
+  port: 5000
+eureka:
+  instance:
+    hostname:   eurekaserver5000.com #配置当前Eureka服务的主机地址
+  client:
+    register-with-eureka: false #当前服务本身就是注册中心,不必注册自己
+    fetch-registry: false #当前服务本身就是注册中心,不必从注册中心取回信息
+    service-url: #客户端(指Consumer/provider)访问当前注册中心时使用的地址
+      defaultZone: http://eurekaServer5000.com:5000/eureka/
+#      defaultZone: http://eurekaServer5001.com:5001/eureka/ #配置集群即向多个注册中心注册自己
+#  server:
+#  #关闭eureka的保护机制
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 90000
+

@@ -1,0 +1,10 @@
+spring:
+  session:
+    store-type: redis
+  redis:
+    host: 120.26.173.145
+    port: 6379
+
+
+server:
+  port: 8002

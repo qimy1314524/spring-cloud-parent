@@ -1,0 +1,33 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/mytey/spring-cloud-config-server.git
+          search-paths:
+            - spring-cloud-config-server
+      label: master
+  rabbitmq:
+      host: 120.26.173.145
+      port: 5672
+      username: guest
+      password: guest
+eureka:
+  instance:
+    instance-id: cloud-config-server
+    hostname: cloud-config-server
+  client:
+    service-url:
+      defaultZone: http://eurekaserver5000.com:5000/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+
+
+

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        group: TEST_GROUP
+#        group: DEV_GROUP
+        namespace: 9974bdd8-c1fd-4130-981c-53a42a81613f
+#dataId的名称和下面一致
+#${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}

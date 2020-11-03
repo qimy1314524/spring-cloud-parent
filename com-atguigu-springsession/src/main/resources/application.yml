@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: test
+
+
+---
+
+spring:
+  session:
+    store-type: redis
+  redis:
+    password: 619619Tey
+    cluster:
+      max-redirects: 3
+      nodes:
+        - 120.26.173.145:7001
+        - 120.26.173.145:7002
+        - 120.26.173.145:7003
+        - 120.26.173.145:7004
+        - 124.71.160.44:7001
+        - 127.71.160.44:7002
+    timeout: 10000ms
+  profiles: dev
+server:
+  port: 8002

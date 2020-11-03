@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.aiplatformauth.mapper.TraceRecordMapper">
+
+  <!--复杂条件查询留言反馈表所有数据-->
+  <select id="findTraceRecord" resultType="com.smart.aiplatformauth.model.TraceRecord">
+    SELECT * FROM tracerecord
+    WHERE tr_id is not null
+    <if test="null != dto.tr_id">
+      AND tr_id = #{dto.tr_id}
+    </if>
+    <if test="null != dto.tr_userid and '' != dto.tr_userid">
+      AND tr_userid = #{dto.tr_userid}
+    </if>
+    <if test="null != dto.tr_realname and '' != dto.tr_realname">
+      AND tr_realname LIKE CONCAT('%',#{dto.tr_realname},'%')
+    </if>
+    <if test="null != dto.tr_operation and '' != dto.tr_operation">
+      AND tr_operation LIKE CONCAT('%',#{dto.tr_operation},'%')
+    </if>
+    <if test="null != dto.tr_interface and '' != dto.tr_interface">
+      AND tr_interface LIKE CONCAT('%',#{dto.tr_interface},'%')
+    </if>
+    <if test="null != dto.tr_recordtime and '' != dto.tr_recordtime">
+      AND tr_recordtime LIKE CONCAT('%',#{dto.tr_recordtime},'%')
+    </if>
+    ORDER BY tr_recordtime DESC
+  </select>
+
+  <delete id="deleteTraceRecord">
+    DELETE FROM tracerecord WHERE DATE_SUB(CURDATE(), INTERVAL 60 DAY) > date(tr_recordtime)
+  </delete>
+
+</mapper>

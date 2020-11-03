@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.smart.aiplatformauth.mapper.BpmInfoMapper">
+
+  <!--查询基础工作流按分类分组取id最大的列表-->
+  <select id="findBpmBasicGroupByClassification" resultType="com.smart.aiplatformauth.model.BpmBasic">
+    SELECT * FROM bpmbasic WHERE bpm_id in (SELECT Max(bpm_id) FROM bpmbasic WHERE (bpm_executeversion = '' OR bpm_executeversion is NULL) GROUP BY bpm_classification)
+  </select>
+
+  <!--查询基础工作流列表所有信息-->
+  <select id="findBpmBasicAll" resultType="com.smart.aiplatformauth.model.BpmBasic">
+    SELECT * FROM bpmbasic
+    WHERE (bpm_executeversion = '' OR bpm_executeversion is NULL)
+    <if test="null != bpmInfoDto.bpm_name and '' != bpmInfoDto.bpm_name">
+      and  bpm_name = #{bpmInfoDto.bpm_name}
+    </if>
+    <if test="null != bpmInfoDto.bpm_classification and '' != bpmInfoDto.bpm_classification">
+      and  bpm_classification = #{bpmInfoDto.bpm_classification}
+    </if>
+    <if test="null != bpmInfoDto.bpm_version and '' != bpmInfoDto.bpm_version">
+      and  bpm_version = #{bpmInfoDto.bpm_version}
+    </if>
+    ORDER BY bpm_createtime ASC
+  </select>
+
+  <!--查询执行工作流列表所有信息-->
+  <select id="findExecuteBpmBasicAll" resultType="com.smart.aiplatformauth.model.BpmBasic">
+    SELECT * FROM bpmbasic
+    WHERE bpm_executeversion != '' AND bpm_executeversion is NOT NULL
+    <if test="null != bpmInfoDto.bpm_name and '' != bpmInfoDto.bpm_name">
+      and  bpm_name = #{bpmInfoDto.bpm_name}
+    </if>
+    <if test="null != bpmInfoDto.bpm_classification and '' != bpmInfoDto.bpm_classification">
+      and  bpm_classification = #{bpmInfoDto.bpm_classification}
+    </if>
+    <if test="null != bpmInfoDto.bpm_executeversion and '' != bpmInfoDto.bpm_executeversion">
+      and  bpm_executeversion = #{bpmInfoDto.bpm_executeversion}
+    </if>
+    ORDER BY bpm_createtime ASC
+  </select>
+
+  <!--查询基础工作流和其所有节点信息（若无节点，则返回1条工作流信息，有节点，则返回多条带有工作流信息的节点信息）-->
+  <select id="findBpmBasicInfo" resultType="com.smart.aiplatformauth.vo.BpmInfoVo">
+    SELECT * FROM bpmbasic b1 LEFT JOIN bpmnodeinfo b2 ON b1.bpm_version = b2.bni_relatebasicversion
+    WHERE (bpm_executeversion = '' OR bpm_executeversion is NULL) AND (bni_relateexecuteversion = '' OR bni_relateexecuteversion is NULL)
+    <if test="null != bpmInfoDto.bpm_name and '' != bpmInfoDto.bpm_name">
+      and  bpm_name = #{bpmInfoDto.bpm_name}
+    </if>
+    <if test="null != bpmInfoDto.bpm_classification and '' != bpmInfoDto.bpm_classification">
+      and  bpm_classification = #{bpmInfoDto.bpm_classification}
+    </if>
+    <if test="null != bpmInfoDto.bpm_version and '' != bpmInfoDto.bpm_version">
+      and  bpm_version = #{bpmInfoDto.bpm_version}
+    </if>
+    <if test="null != bpmInfoDto.bni_name and '' != bpmInfoDto.bni_name">
+      and  bni_name = #{bpmInfoDto.bni_name}
+    </if>
+    ORDER BY bni_ordernumber ASC
+  </select>
+
+  <!--查询执行工作流和其所有节点信息-->
+  <select id="findBpmExecuteInfo" resultType="com.smart.aiplatformauth.vo.BpmInfoVo">
+    SELECT * FROM bpmbasic b1 LEFT JOIN bpmnodeinfo b2 ON b1.bpm_executeversion = b2.bni_relateexecuteversion
+    WHERE bpm_executeversion != '' AND bpm_executeversion is NOT NULL AND bni_relateexecuteversion != '' AND bni_relateexecuteversion is NOT NULL
+    <if test="null != bpmInfoDto.bpm_name and '' != bpmInfoDto.bpm_name">
+      and  bpm_name = #{bpmInfoDto.bpm_name}
+    </if>
+    <if test="null != bpmInfoDto.bpm_classification and '' != bpmInfoDto.bpm_classification">
+      and  bpm_classification = #{bpmInfoDto.bpm_classification}
+    </if>
+    <if test="null != bpmInfoDto.bpm_version and '' != bpmInfoDto.bpm_version">
+      and  bpm_version = #{bpmInfoDto.bpm_version}
+    </if>
+    <if test="null != bpmInfoDto.bpm_executestatus and '' != bpmInfoDto.bpm_executestatus">
+      and  bpm_executestatus = #{bpmInfoDto.bpm_executestatus}
+    </if>
+    <if test="null != bpmInfoDto.bni_name and '' != bpmInfoDto.bni_name">
+      and  bni_name = #{bpmInfoDto.bni_name}
+    </if>
+    <if test="null != bpmInfoDto.bni_executestatus and '' != bpmInfoDto.bni_executestatus">
+      and  bni_executestatus = #{bpmInfoDto.bni_executestatus}
+    </if>
+    <if test="null != bpmInfoDto.bni_auditstatus and '' != bpmInfoDto.bni_auditstatus">
+      and  bni_auditstatus = #{bpmInfoDto.bni_auditstatus}
+    </if>
+    <if test="null != bpmInfoDto.bpm_executeversion and '' != bpmInfoDto.bpm_executeversion">
+      and  bpm_executeversion = #{bpmInfoDto.bpm_executeversion}
+    </if>
+    <if test="null != bpmInfoDto.sign and '' != bpmInfoDto.sign">
+        GROUP BY bpm_name
+    </if>
+    ORDER BY bni_ordernumber ASC
+  </select>
+
+  <!--查询节点对应的表单上报信息（传递工作流版本且不传递节点id则查询所有，不传递工作流版本且传递节点id则查询指定节点上报信息）-->
+  <select id="findNodeAndFormInfo" resultType="com.smart.aiplatformauth.vo.BpmNodeFormInfoVo">
+    SELECT * FROM bpmnodeinfo b1 LEFT JOIN nodeforminfo b2 ON b1.bni_id = b2.nfi_nodeid WHERE bni_relateexecuteversion = nfi_belongbpmversion
+    <if test="null != bni_relateexecuteversion and '' != bni_relateexecuteversion">
+      and  bni_relateexecuteversion = #{bni_relateexecuteversion}
+    </if>
+    <if test="null != bni_id">
+      and  bni_id = #{bni_id}
+    </if>
+    <if test="null != nfi_type and '' != nfi_type">
+      and  nfi_type = #{nfi_type}
+    </if>
+    <if test="null != nfi_audituserid">
+      and  nfi_audituserid = #{nfi_audituserid}
+    </if>
+    ORDER BY nfi_createtime DESC
+  </select>
+
+  <!--根据工作流执行版本查询所有上报信息-->
+  <select id="findNodeFormInfoByBpmExecuteVersion" resultType="com.smart.aiplatformauth.model.NodeFormInfo">
+    SELECT * FROM nodeforminfo WHERE nfi_belongbpmversion = #{nfi_belongbpmversion}
+    <if test="null != nfi_type and '' != nfi_type">
+      and  nfi_type = #{nfi_type}
+    </if>
+    <if test="null != nfi_audituserid">
+      and  nfi_audituserid = #{nfi_audituserid}
+    </if>
+    ORDER BY nfi_createtime DESC
+  </select>
+
+  <!--根据节点id查询所有上报信息-->
+  <select id="findNodeFormInfoByNfiNodeId" resultType="com.smart.aiplatformauth.model.NodeFormInfo">
+    SELECT * FROM nodeforminfo WHERE nfi_nodeid = #{nfi_nodeid} ORDER BY nfi_createtime ASC
+  </select>
+
+  <!--根据版本号查询执行工作流信息-->
+  <select id="findBpmBasicByExecuteVersion" resultType="com.smart.aiplatformauth.model.BpmBasic">
+    SELECT * FROM bpmbasic WHERE bpm_executeversion = #{bpm_executeversion}
+  </select>
+
+  <!--根据版本号查询基础工作流信息-->
+  <select id="findBpmBasicByBasicVersion" resultType="com.smart.aiplatformauth.model.BpmBasic">
+    SELECT * FROM bpmbasic WHERE bpm_version = #{bpm_version}
+  </select>
+
+  <!--根据执行版本号和节点id查询所有相关节点信息-->
+  <select id="findBpmNodeInfoByExecuteVersionAndBniId" resultType="com.smart.aiplatformauth.model.BpmNodeInfo">
+    SELECT * FROM bpmnodeinfo WHERE bni_id is not null
+    <if test="null != bni_id and '' != bni_id">
+      and  bni_id = #{bni_id}
+    </if>
+    <if test="null != bni_relateexecuteversion and '' != bni_relateexecuteversion">
+      and  bni_relateexecuteversion = #{bni_relateexecuteversion}
+    </if>
+  </select>
+
+  <!--根据用户id或角色id查询所有相关正在执行流程的节点信息-->
+  <select id="findExecuteBpmNodeInfoByUserIdOrRoleid" resultType="com.smart.aiplatformauth.model.BpmNodeInfo">
+    SELECT * FROM bpmnodeinfo WHERE bni_relateexecuteversion != '' AND bni_relateexecuteversion is NOT NULL
+    <if test="null != bni_userid">
+      and  bni_userid = #{bni_userid}
+    </if>
+    <if test="null != bni_roleid">
+      and  bni_roleid = #{bni_roleid}
+    </if>
+    <if test="null != bni_executestatus and '' != bni_executestatus">
+      and  bni_executestatus = #{bni_executestatus}
+    </if>
+    <if test="null != bni_auditstatus and '' != bni_auditstatus">
+      and  bni_auditstatus = #{bni_auditstatus}
+    </if>
+    <if test="null != bni_name and '' != bni_name">
+      and  bni_name = #{bni_name}
+    </if>
+    <if test="null != bni_place and '' != bni_place">
+    and  bni_place = #{bni_place}
+    </if>
+  </select>
+
+  <!--根据执行流程版本信息删除所有相关表单上报信息-->
+  <delete id="deleteNodeFormInfoByExecuteVersion">
+    DELETE FROM nodeforminfo WHERE nfi_belongbpmversion = #{nfi_belongbpmversion}
+  </delete>
+
+  <!--（可以此列表结果数量进行统计）查询节点的不同执行状态或审核状态对应的节点数据,若传递角色id（或用户id）则根据角色id查询所有角色下辖人员（或用户）所参与的相关节点-->
+  <select id="findBpmNodeInfoByExecuteOrAuditStatusOrUserRoleId" resultType="com.smart.aiplatformauth.model.BpmNodeInfo">
+    SELECT * FROM bpmnodeinfo WHERE bni_relateexecuteversion != '' AND bni_relateexecuteversion is NOT NULL
+    <if test="null != bpmNodeInfoDto.bni_userid">
+      and  bni_userid = #{bpmNodeInfoDto.bni_userid}
+    </if>
+    <if test="null != bpmNodeInfoDto.bni_roleid">
+      and  bni_roleid = #{bpmNodeInfoDto.bni_roleid}
+    </if>
+    <if test="null != bpmNodeInfoDto.bni_executestatus and '' != bpmNodeInfoDto.bni_executestatus">
+      and  bni_executestatus = #{bpmNodeInfoDto.bni_executestatus}
+    </if>
+    <if test="null != bpmNodeInfoDto.bni_auditstatus and '' != bpmNodeInfoDto.bni_auditstatus">
+      and  bni_auditstatus = #{bpmNodeInfoDto.bni_auditstatus}
+    </if>
+    <if test="null != bpmNodeInfoDto.bni_name and '' != bpmNodeInfoDto.bni_name">
+      and  bni_name = #{bpmNodeInfoDto.bni_name}
+    </if>
+    <if test="null != bpmNodeInfoDto.bni_place and '' != bpmNodeInfoDto.bni_place">
+      and  bni_place = #{bpmNodeInfoDto.bni_place}
+    </if>
+  </select>
+
+</mapper>

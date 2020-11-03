@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="aiplatform-auth" />
+        <module name="com-atguigu-shortMessage" />
+        <module name="com-atguigu-springsession" />
+        <module name="com-atguigu-springsession02" />
+        <module name="comatguiguspringstreamrabbitmqprovider8001" />
+        <module name="comatuguispringcloudstreamrabbitmqconsumer8802" />
+        <module name="spring-cloud-alibaba-consumer9101" />
+        <module name="spring-cloud-alibaba-payment9001" />
+        <module name="spring-cloud-alibaba-payment9002" />
+        <module name="spring-cloud-alibaba-sentinel9301" />
+        <module name="spring-cloud-alibaba-sentinel9401" />
+        <module name="spring-cloud-alibaba.sentinel9301" />
+        <module name="spring-cloud-common" />
+        <module name="spring-cloud-config-client3355" />
+        <module name="spring-cloud-config-client3366" />
+        <module name="spring-cloud-configserver" />
+        <module name="spring-cloud-consumer" />
+        <module name="spring-cloud-dashboard" />
+        <module name="spring-cloud-dashbord" />
+        <module name="spring-cloud-eureka" />
+        <module name="spring-cloud-eureka6000" />
+        <module name="spring-cloud-getway9527" />
+        <module name="spring-cloud-provider" />
+        <module name="spring-cloud-stream-mqqp-consumer8803" />
+        <module name="spring-cloud-zuul" />
+        <module name="spring.cloud.alibaba.config9201" />
+        <module name="springcloudcommon" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aiplatform-auth" target="1.8" />
+      <module name="com-atguigu-shortMessage" target="1.8" />
+      <module name="com-atguigu-springsession" target="1.8" />
+      <module name="com-atguigu-springsession02" target="1.8" />
+      <module name="comatguiguspringstreamrabbitmqprovider8001" target="1.8" />
+      <module name="comatuguispringcloudstreamrabbitmqconsumer8802" target="1.8" />
+      <module name="spring-cloud-alibaba-consumer9101" target="1.8" />
+      <module name="spring-cloud-alibaba-payment9001" target="1.8" />
+      <module name="spring-cloud-alibaba-payment9002" target="1.8" />
+      <module name="spring-cloud-alibaba-sentinel9301" target="1.8" />
+      <module name="spring-cloud-alibaba-sentinel9401" target="1.8" />
+      <module name="spring-cloud-alibaba.sentinel9301" target="1.8" />
+      <module name="spring-cloud-common" target="1.8" />
+      <module name="spring-cloud-config-client3355" target="1.8" />
+      <module name="spring-cloud-config-client3366" target="1.8" />
+      <module name="spring-cloud-configserver" target="1.8" />
+      <module name="spring-cloud-consumer" target="1.8" />
+      <module name="spring-cloud-dashboard" target="1.8" />
+      <module name="spring-cloud-dashbord" target="1.8" />
+      <module name="spring-cloud-eureka" target="1.8" />
+      <module name="spring-cloud-eureka6000" target="1.8" />
+      <module name="spring-cloud-getway9527" target="1.8" />
+      <module name="spring-cloud-parent" target="1.8" />
+      <module name="spring-cloud-provider" target="1.8" />
+      <module name="spring-cloud-stream-mqqp-consumer8803" target="1.8" />
+      <module name="spring-cloud-zuul" target="1.8" />
+      <module name="spring.cloud.alibaba.config9201" target="1.8" />
+      <module name="springcloudcommon" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

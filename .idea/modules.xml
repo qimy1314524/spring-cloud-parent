@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/aiplatform-auth/aiplatform-auth.iml" filepath="$PROJECT_DIR$/aiplatform-auth/aiplatform-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com-atguigu-shortMessage/com-atguigu-shortMessage.iml" filepath="$PROJECT_DIR$/com-atguigu-shortMessage/com-atguigu-shortMessage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com-atguigu-springsession/com-atguigu-springsession.iml" filepath="$PROJECT_DIR$/com-atguigu-springsession/com-atguigu-springsession.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com-atguigu-springsession02/com-atguigu-springsession02.iml" filepath="$PROJECT_DIR$/com-atguigu-springsession02/com-atguigu-springsession02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/comatguiguspringstreamrabbitmqprovider8001/comatguiguspringstreamrabbitmqprovider8001.iml" filepath="$PROJECT_DIR$/comatguiguspringstreamrabbitmqprovider8001/comatguiguspringstreamrabbitmqprovider8001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/comatuguispringcloudstreamrabbitmqconsumer8802/comatuguispringcloudstreamrabbitmqconsumer8802.iml" filepath="$PROJECT_DIR$/comatuguispringcloudstreamrabbitmqconsumer8802/comatuguispringcloudstreamrabbitmqconsumer8802.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-alibaba-consumer9101/spring-cloud-alibaba-consumer9101.iml" filepath="$PROJECT_DIR$/spring-cloud-alibaba-consumer9101/spring-cloud-alibaba-consumer9101.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-alibaba-payment9001/spring-cloud-alibaba-payment9001.iml" filepath="$PROJECT_DIR$/spring-cloud-alibaba-payment9001/spring-cloud-alibaba-payment9001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-alibaba-payment9002/spring-cloud-alibaba-payment9002.iml" filepath="$PROJECT_DIR$/spring-cloud-alibaba-payment9002/spring-cloud-alibaba-payment9002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-alibaba-sentinel9401/spring-cloud-alibaba-sentinel9401.iml" filepath="$PROJECT_DIR$/spring-cloud-alibaba-sentinel9401/spring-cloud-alibaba-sentinel9401.iml" />
+      <module fileurl="file://$PROJECT_DIR$/comatguiguspringstreamrabbitmqprovider8001/spring-cloud-alibaba.sentinel9301.iml" filepath="$PROJECT_DIR$/comatguiguspringstreamrabbitmqprovider8001/spring-cloud-alibaba.sentinel9301.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-common/spring-cloud-common.iml" filepath="$PROJECT_DIR$/spring-cloud-common/spring-cloud-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-config-client3355/spring-cloud-config-client3355.iml" filepath="$PROJECT_DIR$/spring-cloud-config-client3355/spring-cloud-config-client3355.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-config-client3366/spring-cloud-config-client3366.iml" filepath="$PROJECT_DIR$/spring-cloud-config-client3366/spring-cloud-config-client3366.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-configserver/spring-cloud-configserver.iml" filepath="$PROJECT_DIR$/spring-cloud-configserver/spring-cloud-configserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-consumer/spring-cloud-consumer.iml" filepath="$PROJECT_DIR$/spring-cloud-consumer/spring-cloud-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-dashboard/spring-cloud-dashboard.iml" filepath="$PROJECT_DIR$/spring-cloud-dashboard/spring-cloud-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-eureka/spring-cloud-eureka.iml" filepath="$PROJECT_DIR$/spring-cloud-eureka/spring-cloud-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-eureka6000/spring-cloud-eureka6000.iml" filepath="$PROJECT_DIR$/spring-cloud-eureka6000/spring-cloud-eureka6000.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-getway9527/spring-cloud-getway9527.iml" filepath="$PROJECT_DIR$/spring-cloud-getway9527/spring-cloud-getway9527.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-parent.iml" filepath="$PROJECT_DIR$/spring-cloud-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-provider/spring-cloud-provider.iml" filepath="$PROJECT_DIR$/spring-cloud-provider/spring-cloud-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-stream-mqqp-consumer8803/spring-cloud-stream-mqqp-consumer8803.iml" filepath="$PROJECT_DIR$/spring-cloud-stream-mqqp-consumer8803/spring-cloud-stream-mqqp-consumer8803.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-zuul/spring-cloud-zuul.iml" filepath="$PROJECT_DIR$/spring-cloud-zuul/spring-cloud-zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring.cloud.alibaba.config9201/spring.cloud.alibaba.config9201.iml" filepath="$PROJECT_DIR$/spring.cloud.alibaba.config9201/spring.cloud.alibaba.config9201.iml" />
+    </modules>
+  </component>
+</project>

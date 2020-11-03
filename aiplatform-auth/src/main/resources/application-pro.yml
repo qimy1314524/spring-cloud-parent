@@ -1,0 +1,137 @@
+server:
+  port: 9010
+  #tomcat:
+  #  max-connections: 180000
+  #  max-swallow-size: -1
+  #  max-http-form-post-size: -1
+  #ssl:
+    #key-store: XXXXXX.pfx #政府提供真证书
+    #key-alias: alias
+    #key-store-password: XXXXXXXX #密钥8位
+    #key-store-type: PKCS12
+    #enabled: true
+
+spring:
+  application:
+    name: aiplatform-auth
+  redis:
+    host: 127.0.0.1
+    port: 6378
+    lettuce:
+      pool:
+        max-active: 50
+        max-wait: 10000ms
+        max-idle: 8
+        min-idle: 5
+      #sentinel:
+      #  master: mymaster
+      #  nodes: 0.0.0.0:4200,0.0.0.1:4200
+    password: smartagriculture
+
+  datasource:
+    mysql:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3307/smartagriculture?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: SmartAgriculture123.
+      type: com.alibaba.druid.pool.DruidDataSource
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 100
+    pg:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://127.0.0.1:5433/postgres
+      username: postgres
+      password: postgres
+      type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+      max-request-size: -1
+  #mvc:
+  #  static-path-pattern: /static/**
+
+#注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8001/eureka/
+  instance:
+    #实例默认通过使用域名形式注册到注册中心:false
+    prefer-ip-address: true
+    #实例名
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+mybatis:
+  mapper-locations: classpath*:/mybatis/**/*.xml
+  type-aliases-package: com.smart.aiplatformauth.model
+  configuration:
+    map-underscore-to-camel-case: false  #开启驼峰命名方式
+    cache-enabled: true               #全局映射器启用缓存
+    lazy-loading-enabled: true    #查询时，关闭关联对象即时加载以提高性能
+    aggressive-lazy-loading: false   #设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指定)，不会加载关联表的所有字段，以提高性能
+    multiple-result-sets-enabled: true  #对于未知的SQL查询，允许返回不同的结果集以达到通用的效果
+logging:
+  level:
+    com:
+      smart:
+        aiplatformauth:
+          mapper: info
+
+#jwt生成密钥
+jwt:
+  secret:
+    key: asdfghjkl
+  #refreshToken 存储key
+  refresh:
+    token:
+      key:
+        format: JWT_REFRESH_TOKEN::%s
+  #token黑名单 存储key
+  blacklist:
+    key:
+      format: JWT_BLACKLIST::%s
+#refreshToken过期时间：60min
+refresh:
+  token:
+    expire:
+      time: 3600000
+#token过期时间：30min,刷新后的token过期时间是当前的2倍
+token:
+  expire:
+    time: 1800000
+
+#配置分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+#页面的地址
+Instructions:
+  path: https://www.baidu.com/
+  image: /static/
+  imagepathurl: image/
+  imagepath: /home/image/
+
+wx:
+  miniapp:
+    appid: wxf26e42a061dc4d76
+    secret: 6d9fa8445942771dcce0478c65317249
+    msgDataFormat: JSON
